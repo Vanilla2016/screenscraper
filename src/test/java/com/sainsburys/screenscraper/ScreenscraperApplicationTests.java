@@ -1,4 +1,4 @@
-package com.sainsburys.dominic.screenscraper;
+package com.sainsburys.screenscraper;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
