@@ -39,14 +39,10 @@ public class Category {
     
     public BigDecimal getVAT() {
     	
-    	//System.out.println(getTotalPrice());
     	BigDecimal vatAmount = getTotalPrice().divide(new BigDecimal(100));
-    	//System.out.println("vatAmount :" +vatAmount);
-    	//System.out.println("finalVatAmount :" +vatAmount.multiply(vat).setScale(2, RoundingMode.CEILING));
     	return vatAmount.multiply(vat).setScale(2, RoundingMode.CEILING);
-    	//return new BigDecimal(getTotalPrice()/100*20);
     }
-    
+  
     /*
      * Return formatted JSON String of product 
      * details
