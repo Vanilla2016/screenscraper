@@ -20,9 +20,10 @@ public class CategorySerializer extends StdSerializer< Category>{
 		
 		jsonGenerator.writeStartObject();
 		jsonGenerator.writeObjectField("results", category.getProducts());
-		jsonGenerator.writeObjectField("total", category.getProducts());
-		//jsonGenerator.writeObjectField("gross", category.getTotalPrice());
-		//jsonGenerator.writeObjectField("VAT", category.getVAT());
+		jsonGenerator.writeObjectFieldStart("total"); //start total object
+		jsonGenerator.writeNumberField("gross", category.getTotalPrice());
+		jsonGenerator.writeNumberField("VAT", category.getVAT());
+		jsonGenerator.writeEndObject(); //end address object
 		jsonGenerator.writeEndObject();
 		
 	}
