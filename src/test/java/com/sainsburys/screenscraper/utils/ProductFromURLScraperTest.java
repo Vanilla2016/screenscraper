@@ -41,7 +41,7 @@ import org.junit.rules.RuleChain;
 import org.junit.rules.TestRule;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import com.sainsburys.screenscraper.exceptions.ProductFetchException;
+import com.sainsburys.screenscraper.exceptions.ProductAccessException;
 import com.sainsburys.screenscraper.pojo.Category;
 import com.sainsburys.screenscraper.pojo.Product;
 
@@ -111,7 +111,7 @@ public class ProductFromURLScraperTest {
 	 * in stubbed HTML. There are 17 on the real page
 	 */
 	@Test
-	public void testNumberOfProductsIsFour() throws ProductFetchException {
+	public void testNumberOfProductsIsFour() throws ProductAccessException {
 			ProductFromURLScraper productInfoScraper = new ProductFromURLScraper(stubUri);
 			Category category = productInfoScraper.extractProducts();
 			assertEquals(4, category.getProducts().size());
@@ -121,7 +121,7 @@ public class ProductFromURLScraperTest {
 	 * Last out of the 4 product links
 	 */
 	@Test
-	public void testBlackBerriesAreLast() throws ProductFetchException {
+	public void testBlackBerriesAreLast() throws ProductAccessException {
 		ProductFromURLScraper productInfoScraper = new ProductFromURLScraper(stubUri);
 		Category category = productInfoScraper.extractProducts();
 		Product blackBerryProd = category.getProducts().get(3);
