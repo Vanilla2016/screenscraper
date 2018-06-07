@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 
 import com.sainsburys.screenscraper.exceptions.ProductExtractException;
 
@@ -37,6 +38,7 @@ public class Product {
 	public Product(Document productDocument) throws ProductExtractException {
 		Element bodyElement = productDocument.body();
 		title = extractTitle(bodyElement);
+		kcal_per_100g = extractKcalPer100g(bodyElement);
 		unitPrice = extractUnitPrice(bodyElement);
 		description = extractDescription(bodyElement);
 	}
@@ -50,6 +52,18 @@ public class Product {
         }
 	}
 	
+	private int extractKcalPer100g (Element productElement) throws ProductExtractException {
+		Element tableRowElement = productElement.select(".tableRow0").first();
+		if(tableRowElement != null) {
+			for (Element element : tableRowElement.children()) {
+				if (element.hasText())
+					if (element.text().contains("kcal"))
+						return Integer.parseInt(element.text().replace("kcal", ""));
+			}
+		}
+		return 0;
+	}
+	
 	private BigDecimal extractUnitPrice(Element productElement) throws ProductExtractException {
         Element unitPriceElement = productElement.select(".pricePerUnit").first();
         if(unitPriceElement != null) {
@@ -61,7 +75,7 @@ public class Product {
     }
 	
 	private String extractDescription(Element productElement) throws ProductExtractException {
-        Element titleElement = productElement.select(".productText").first();
+        Element titleElement = productElement.select(".productText p").first();
         if(titleElement != null) {
             return titleElement.text();
         } else {

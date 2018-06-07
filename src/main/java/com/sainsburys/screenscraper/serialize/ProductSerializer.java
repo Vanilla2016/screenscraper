@@ -22,7 +22,9 @@ public class ProductSerializer extends StdSerializer<Product> {
 			
 			jsonGenerator.writeStartObject();
 			jsonGenerator.writeStringField("title", product.getTitle());
-			jsonGenerator.writeNumberField("kcal_per_100g", product.getKcalPer100g());
+			if (product.getKcalPer100g() > 0) {
+				jsonGenerator.writeNumberField("kcal_per_100g", product.getKcalPer100g());
+			}
 			jsonGenerator.writeNumberField("unit_price", product.getUnitPrice());
 			jsonGenerator.writeStringField("description", product.getDescription());
 			jsonGenerator.writeEndObject();
