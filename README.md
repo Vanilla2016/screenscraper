@@ -15,6 +15,8 @@ To run the test harnesses run ScreenScraperUnitTestSuite as JUnit test.
 To run the app:
  mvn compile exec:java -Dexec.args="https://jsainsburyplc.github.io/serverside-test/site/www.sainsburys.co.uk/webapp/wcs/stores/servlet/gb/groceries/berries-cherries-currants6039.html"
 
+NOTE - the structure of the JSON output is correct, but the formatting is slightly wrong, ran out of time before rectified this.
+
 #Technologies
 
 junit 
@@ -25,7 +27,7 @@ wiremock
 Requires local installation of Java 8 and Maven.
 It's a Maven project created through Spring Boot for ease of auto configuration and covenience of dependency management through pom.xml
 
-Have little experience of screen scraping, after some reading into other alternatives such as HTMLUnit, JSoup seemed more intuitive as no need for Tree traversal  
+Have little experience of screen scraping, after some reading into other alternatives such as HTMLUnit, JSoup seemed more intuitive as no need for Tree traversa*l  
 
 As was developing locally, didn't use Logging library, relied on console output
 
